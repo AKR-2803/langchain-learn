@@ -4,6 +4,26 @@ from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 # from langchain_openai import ChatOpenAI
 from langchain_ollama import ChatOllama
+from langchain_core.output_parsers import StrOutputParser
+
+"""
+# A simple chain 
+
+def main():
+    prompt = PromptTemplate.from_template("Tell me a joke about {topic}")
+    
+    llm = ChatOllama(model="gemma3:4b", temperature=0)
+    
+    # to convert model output to a string
+    output_parser = StrOutputParser()
+
+    # create the chain using the pipe operator (|)
+    chain = prompt | llm | output_parser
+    
+    # input for the prompt template's 'topic' variable is provided as a dictionary
+    response = chain.invoke({"topic" : "cats"})
+    print(response)
+"""
 
 load_dotenv()
 
@@ -26,7 +46,8 @@ def main():
     summary_prompt_template = PromptTemplate(input_variables=["information"] , template=summary_template)
 
     # llm = ChatOpenAI(temperature=0, model="gpt-5")
-    llm = ChatOllama(temperature=0, model="gemma3:270m")
+    # llm = ChatOllama(temperature=0, model="gemma3:270m")
+    llm = ChatOllama(temperature=0, model="gemma3:4b")
     
     """
     => Ref: [https://python.langchain.com/docs/concepts/lcel/#the--operator]
